@@ -1,3 +1,5 @@
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.http import HttpResponse
 from django.shortcuts import render
 from .models import Customer
@@ -14,3 +16,21 @@ def index(request):
     # thereby finding the customer/employee profile that matches with the logged-in user.
     print(user)
     return render(request, 'customers/index.html')
+
+
+def create(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        user = request.POST.get('user')
+        pickup_day = request.POST.get('pickup_day')
+        address = request.POST.get('address')
+        zip_code = request.POST.get('zip_code')
+        balance = request.POST.get('balance')
+        one_time_pickup = request.POST.get('one_time_pickup')
+        suspension_start = request.POST.get('suspension_start')
+        suspension_end = request.POST.get('suspension_end')
+        new_customer = Customer(name=name, user=user, pickup_day=pickup_day, address=address,zip_code=zip_code, balance=balance, one_time_pickup=one_time_pickup, suspension_start=suspension_start, suspension_end=suspension_end)
+        new_customer.save()
+        return HttpResponseRedirect(reverse('customer:index'))
+    else:
+        return render(request, 'customers/create.html')
