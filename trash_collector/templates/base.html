@@ -8,7 +8,12 @@
 {% if user.is_authenticated %}
   {% for group in user.groups.all%}
     {% if group.name == "Customers" %}
-    <p>Customer Navbar</p>
+<ul>
+  <li><a href="#">Home</a></li>
+  <li><a href="#">Change Pickup Day</a></li>
+  <li><a href="#">Suspend Account</a></li>
+  <li><a href="#">Account Info</a></li>
+</ul>
     {% elif group.name == "Employees" %}
     <p>Employee Navbar</p>
     {% endif %}
