@@ -29,7 +29,7 @@ def create(request):
         one_time_pickup = request.POST.get('one_time_pickup')
         suspension_start = request.POST.get('suspension_start')
         suspension_end = request.POST.get('suspension_end')
-        new_customer = Customer(name=name, user=user, pickup_day=pickup_day, address=address,zip_code=zip_code, balance=balance, one_time_pickup=one_time_pickup, suspension_start=suspension_start, suspension_end=suspension_end)
+        new_customer = Customer(name=name, user=user, pickup_day=pickup_day, address=address, zip_code=zip_code, balance=balance, one_time_pickup=one_time_pickup, suspension_start=suspension_start, suspension_end=suspension_end)
         new_customer.save()
         return HttpResponseRedirect(reverse('customer:index'))
     else:
