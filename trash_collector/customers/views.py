@@ -21,7 +21,6 @@ def index(request):
 def create(request):
     if request.method == 'POST':
         name = request.POST.get('name')
-        user = request.POST.get('user')
         pickup_day = request.POST.get('pickup_day')
         address = request.POST.get('address')
         zip_code = request.POST.get('zip_code')
@@ -29,8 +28,12 @@ def create(request):
         one_time_pickup = request.POST.get('one_time_pickup')
         suspension_start = request.POST.get('suspension_start')
         suspension_end = request.POST.get('suspension_end')
-        new_customer = Customer(name=name, user=user, pickup_day=pickup_day, address=address, zip_code=zip_code, balance=balance, one_time_pickup=one_time_pickup, suspension_start=suspension_start, suspension_end=suspension_end)
+        new_customer = Customer(name=name, user=request.user, pickup_day=pickup_day, address=address, zip_code=zip_code, balance=balance, one_time_pickup=one_time_pickup, suspension_start=suspension_start, suspension_end=suspension_end)
         new_customer.save()
         return HttpResponseRedirect(reverse('customer:index'))
     else:
         return render(request, 'customers/create.html')
+
+
+def change(request):
+    """This will be similar to create, but only for a single properter, the pickup_day. You will need to find the logged in user's customer profile, then change its pickup_dat property"""
