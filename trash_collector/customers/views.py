@@ -14,14 +14,21 @@ def index(request):
     # It will be necessary while creating a customer/employee to assign the logged-in user as the user foreign key
     # This will allow you to later query the database using the logged-in user,
     # thereby finding the customer/employee profile that matches with the logged-in user.
+    try:
+        logged_in_customer = Customer.objects.get(user=user)
+        context = {
+            'logged_in_customer': logged_in_customer
+        }
+    except:
+        return HttpResponseRedirect(reverse('customer:create'))
     print(user)
-    return render(request, 'customers/index.html')
+    return render(request, 'customers/index.html', context)
 
 
 def create(request):
     if request.method == 'POST':
         name = request.POST.get('name')
-        user = request.POST.get('user')
+        user = request.Post.get('user')
         pickup_day = request.POST.get('pickup_day')
         address = request.POST.get('address')
         zip_code = request.POST.get('zip_code')
