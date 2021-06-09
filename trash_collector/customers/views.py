@@ -37,6 +37,9 @@ def change(request):
         user = request.user
         logged_in_customer = Customer.objects.get(user=user)
         logged_in_customer.pickup_day = request.POST.get('pickup_day')
+        logged_in_customer.one_time_pickup = request.POST.get('one_time_pickup')
+        logged_in_customer.suspension_start = request.POST.get('suspension_start')
+        logged_in_customer.suspension_end = request.POST.get('suspension_end')
         logged_in_customer.save()
         return HttpResponseRedirect(reverse('customers:index'))
     else:
@@ -46,3 +49,4 @@ def change(request):
             'customers': customers_edit
             }
         return render(request, 'customers/change.html', context)
+

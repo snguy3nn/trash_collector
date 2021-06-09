@@ -4,7 +4,7 @@ from django.db import models
 class Customer(models.Model):
     name = models.CharField(max_length=50)
     user = models.ForeignKey('accounts.User', blank=True, null=True, on_delete=models.CASCADE)
-    pickup_day = models.DateField(null=True)
+    pickup_day = models.CharField(max_length=50)
     address = models.CharField(max_length=50)
     zip_code = models.CharField(max_length=50)
     balance = models.IntegerField(default=0)

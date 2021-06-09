@@ -11,7 +11,10 @@
 <p><a href="{% url 'logout' %}">Log Out</a></p>
 <form action="{% url 'customers:change' %}" method="post">
   {% csrf_token %}
-  Pickup_day:<input type="date" name="pickup_day" id="pickup_day" value="{{customers.pickup_day}}"><br>
+  Pickup Day(Mon-Fri):<input type="text" name="pickup_day" id="pickup_day" value="{{customers.pickup_day}}"><br>
+  Additional Pickup:<input type="date" name="one_time_pickup" id="one_time_pickup" value="{{customers.one_time_pickup}}"><br>
+  Suspension Start:<input type="date" name="suspension_start" id="suspension_start" value="{{customers.suspension_start}}"><br>
+  Suspension End:<input type="date" name="suspension_end" id="suspension_end" value="{{customers.suspension_end}}"><br>
     <input type="submit" value="Save Changes">
 </form>
 </body>
