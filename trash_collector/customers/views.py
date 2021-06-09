@@ -50,3 +50,12 @@ def change(request):
             }
         return render(request, 'customers/change.html', context)
 
+
+def account(request):
+    user = request.user
+    logged_in_customer = Customer.objects.get(user=user)
+    context = {
+        'logged_in_customer': logged_in_customer
+    }
+    return render(request, 'customers/account.html', context)
+

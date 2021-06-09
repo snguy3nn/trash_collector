@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Account</title>
+</head>
+<body>
+<h1>Account Details</h1>
+<p>NAME: {{logged_in_customer.name}}</p>
+<p>ADDRESS: {{logged_in_customer.address}}</p>
+<p>ZIP CODE: {{logged_in_customer.zip_code}}</p>
+<p>BALANCE: ${{logged_in_customer.balance}}</p>
+<p>PICKUP DAY: {{logged_in_customer.pickup_day}}</p>
+<p>ONE TIME PICKUP: {{logged_in_customer.one_time_pickup}}</p>
+<p>SUSPENSION START: {{logged_in_customer.suspension_start}}</p>
+<p>SUSPENSION END: {{logged_in_customer.suspension_end}}</p>
+</body>
+</html>
