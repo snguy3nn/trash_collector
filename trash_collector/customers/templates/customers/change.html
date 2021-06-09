@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Change Pickup Day</title>
+</head>
+<body>
+<p><a href="{% url 'logout' %}">Log Out</a></p>
+<form action="{% url 'customers:change' customers.id %}" method="post">
+  {% csrf_token %}
+  Pickup_day:<input type="date" name="pickup_day" id="pickup_day" value="{{customers.pickup_day}}"><br>
+    <input type="submit" value="Save Changes">
+</form>
+</body>
+</html>
