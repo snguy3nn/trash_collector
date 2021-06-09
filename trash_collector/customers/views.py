@@ -32,14 +32,16 @@ def create(request):
         return render(request, 'customers/create.html')
 
 
-def change(request, customers_id):
+def change(request):
     if request.method == 'POST':
-        customers_edit = Customer.objects.get(id=customers_id)
-        customers_edit.pickup_day = request.POST.get('pickup_day')
-        customers_edit.save()
+        user = request.user
+        logged_in_customer = Customer.objects.get(user=user)
+        logged_in_customer.pickup_day = request.POST.get('pickup_day')
+        logged_in_customer.save()
         return HttpResponseRedirect(reverse('customers:index'))
     else:
-        customers_edit = Customer.objects.get(id=customers_id)
+        user = request.user
+        customers_edit = Customer.objects.get(user=user)
         context = {
             'customers': customers_edit
             }

@@ -9,7 +9,7 @@
 </head>
 <body>
 <p><a href="{% url 'logout' %}">Log Out</a></p>
-<form action="{% url 'customers:change' customers.id %}" method="post">
+<form action="{% url 'customers:change' %}" method="post">
   {% csrf_token %}
   Pickup_day:<input type="date" name="pickup_day" id="pickup_day" value="{{customers.pickup_day}}"><br>
     <input type="submit" value="Save Changes">
