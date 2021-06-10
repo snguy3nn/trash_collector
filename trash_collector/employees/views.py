@@ -1,13 +1,27 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.apps import apps
-
-# Create your views here.
-
-# TODO: Create a function for each path created in employees/urls.py. Each will need a template as well.
+from .models import Employee
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import reverse
 
 
 def index(request):
-    # This line will get the Customer model from the other app, it can now be used to query the db
     Customer = apps.get_model('customers.Customer')
+    if Customer.zip_code == Employee.zip_code:
+        print(Customer.name)
     return render(request, 'employees/index.html')
+
+
+def create(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        user = request.user
+        zipcode = request.POST.get('zipcode')
+        new_employee = Employee(name=name, user=user, zipcode=zipcode)
+        new_employee.save()
+        return HttpResponseRedirect(reverse('employees:index'))
+    else:
+        return render(request, 'employees/create.html')
+
+

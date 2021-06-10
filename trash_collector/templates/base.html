@@ -12,7 +12,8 @@
   <p><a href="{% url 'customers:account' %}">Account Info</a></p>
   <p><a href="{% url 'logout' %}">Log Out</a></p>
     {% elif group.name == "Employees" %}
-    <p>Employee Navbar</p>
+  <p><a href="{% url 'employees:index' %}">Home</a></p>
+  <p><a href="{% url 'logout' %}">Log Out</a></p>
     {% endif %}
   {% endfor %}
 {% endif %}
